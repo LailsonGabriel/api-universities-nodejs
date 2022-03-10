@@ -34,7 +34,7 @@ MongoClient.connect(url, async function (err, db) {
   let myobj = await getUniversities();
   dbo.collection('universities').insertMany(myobj, function (err, res) {
     if (err) throw err;
-    console.log('1 document inserted');
+    console.log('Documents inserted');
     db.close();
   });
 });

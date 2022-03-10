@@ -33,12 +33,17 @@ const updateUniversity = rescue(async (req, res) => {
   const { id } = req.params;
   const university = await putUniversity(id, req.body);
 
+  if (!university) return notFoundError(res);
+
   res.status(200).json(university);
 });
 
 const deletedUniversity = rescue(async (req, res) => {
   const { id } = req.params;
-  await destroyUniversity(id);
+
+  const deleted = await destroyUniversity(id);
+
+  if (!deleted) return notFoundError(res);
 
   res.status(200).json({ message: 'Universidade Deletada com Sucesso!' });
 });

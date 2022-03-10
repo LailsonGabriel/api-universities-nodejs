@@ -1,19 +1,20 @@
 const express = require('express');
 const dotenv = require('dotenv');
+const errorMiddleware = require('./src/middlewares/errorMiddleware');
 
 const connectToDatabase = require('.//src/database/mongoose.database');
-const UniversityModel = require('./src/models/university.model');
 
 dotenv.config();
 
 const app = express();
+app.use(express.json());
 
 connectToDatabase();
 
-app.get('/', async (req, res) => {
-  const universities = await UniversityModel.find({});
-  res.status(200).json(universities);
-});
+const universitiesRoutes = require('./src/routes/universitiesRoutes');
+app.use('/universities', universitiesRoutes);
+
+app.use(errorMiddleware);
 
 app.listen(8000, () => {
   console.log('Listening on port 8000!');

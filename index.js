@@ -2,6 +2,7 @@ const express = require('express');
 const dotenv = require('dotenv');
 
 const connectToDatabase = require('.//src/database/mongoose.database');
+const UniversityModel = require('./src/models/university.model');
 
 dotenv.config();
 
@@ -9,8 +10,9 @@ const app = express();
 
 connectToDatabase();
 
-app.get('/', (req, res) => {
-  res.status(200).send('Hello world!');
+app.get('/', async (req, res) => {
+  const universities = await UniversityModel.find({});
+  res.status(200).json(universities);
 });
 
 app.listen(8000, () => {

@@ -14,7 +14,7 @@ const {
   verifyExistUniversity,
 } = require('../middlewares/postUniversity.middleware');
 
-router.get('/:page?', getUniversities);
+router.get('/', getUniversities);
 router.get('/:id', getById);
 router.post('/', verifyFields, verifyExistUniversity, createUniversity);
 router.put('/:id', verifyFields, updateUniversity);

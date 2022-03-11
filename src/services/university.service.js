@@ -19,12 +19,12 @@ const getAllUniversities = async (page, country) => {
     return [
       ...result,
       {
-        previousPage: `http://localhost:8000/universities/${
+        previousPage: `http://localhost:8000/universities?page=${
           page === 1 ? 1 : page - 1
         }?country=${country}`,
-        nextPage: `http://localhost:8000/universities/${
+        nextPage: `http://localhost:8000/universities?page=${
           page + 1
-        }?country=${country}`,
+        }&country=${country}`,
       },
     ];
   }
@@ -39,10 +39,10 @@ const getAllUniversities = async (page, country) => {
   return [
     ...result,
     {
-      previousPage: `http://localhost:8000/universities/${
+      previousPage: `http://localhost:8000/universities?page=${
         page === 1 ? 1 : page - 1
       }`,
-      nextPage: `http://localhost:8000/universities/${page + 1}`,
+      nextPage: `http://localhost:8000/universities?page=${page + 1}`,
     },
   ];
 };

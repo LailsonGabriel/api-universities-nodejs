@@ -1,6 +1,7 @@
 const UniversityModel = require('../models/university.model');
 
-const getAllUniversities = async () => UniversityModel.find({});
+const getAllUniversities = async () =>
+  UniversityModel.find({}, { name: 1, country: 1, 'state-province': 1 });
 
 const getUniversityById = async (id) => UniversityModel.findById(id);
 

@@ -10,9 +10,10 @@ const {
 } = require('../services/university.service');
 
 const getUniversities = rescue(async (req, res) => {
+  const page = parseInt(req.params.page || '1');
   const { country } = req.query;
 
-  const universities = await getAllUniversities(country);
+  const universities = await getAllUniversities(page, country);
   res.status(200).json(universities);
 });
 

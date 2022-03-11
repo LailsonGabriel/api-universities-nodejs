@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const rescue = require('express-rescue');
 
 const {
   getUniversities,
@@ -15,7 +14,7 @@ const {
   verifyExistUniversity,
 } = require('../middlewares/postUniversity.middleware');
 
-router.get('/', getUniversities);
+router.get('/:page?', getUniversities);
 router.get('/:id', getById);
 router.post('/', verifyFields, verifyExistUniversity, createUniversity);
 router.put('/:id', verifyFields, updateUniversity);

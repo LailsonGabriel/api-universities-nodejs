@@ -1,22 +1,50 @@
 const UniversityModel = require('../models/university.model');
 
-String.prototype.capitalize = function () {
-  return this.charAt(0).toUpperCase() + this.substr(1);
-};
+function firstLetterUpperCase(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
 
-const getAllUniversities = async (query) => {
-  const convertedQuery = query.capitalize();
-  const noQuery = await UniversityModel.find(
+const getAllUniversities = async (page, country) => {
+  const sizeSkip = 20 * (page - 1);
+
+  if (country) {
+    const convertedQuery = firstLetterUpperCase(country);
+    const result = await UniversityModel.find(
+      { country: convertedQuery },
+      { name: 1, country: 1, 'state-province': 1 },
+    )
+      .skip(sizeSkip)
+      .limit(20);
+
+    return [
+      ...result,
+      {
+        previousPage: `http://localhost:8000/universities/${
+          page === 1 ? 1 : page - 1
+        }?country=${country}`,
+        nextPage: `http://localhost:8000/universities/${
+          page + 1
+        }?country=${country}`,
+      },
+    ];
+  }
+
+  const result = await UniversityModel.find(
     {},
     { name: 1, country: 1, 'state-province': 1 },
-  );
+  )
+    .skip(sizeSkip)
+    .limit(20);
 
-  const Squery = await UniversityModel.find(
-    { country: convertedQuery },
-    { name: 1, country: 1, 'state-province': 1 },
-  );
-
-  return query ? Squery : noQuery;
+  return [
+    ...result,
+    {
+      previousPage: `http://localhost:8000/universities/${
+        page === 1 ? 1 : page - 1
+      }`,
+      nextPage: `http://localhost:8000/universities/${page + 1}`,
+    },
+  ];
 };
 
 const getUniversityById = async (id) => UniversityModel.findById(id);

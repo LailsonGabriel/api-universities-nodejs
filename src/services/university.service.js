@@ -22,9 +22,11 @@ const getAllUniversities = async (page, country) => {
         previousPage: `http://localhost:8000/universities?page=${
           page === 1 ? 1 : page - 1
         }&country=${country}`,
-        nextPage: `http://localhost:8000/universities?page=${
-          page + 1
-        }&country=${country}`,
+        nextPage:
+          result.length !== 0 &&
+          `http://localhost:8000/universities?page=${
+            page + 1
+          }&country=${country}`,
       },
     ];
   }
@@ -42,7 +44,9 @@ const getAllUniversities = async (page, country) => {
       previousPage: `http://localhost:8000/universities?page=${
         page === 1 ? 1 : page - 1
       }`,
-      nextPage: `http://localhost:8000/universities?page=${page + 1}`,
+      nextPage:
+        result.length !== 0 &&
+        `http://localhost:8000/universities?page=${page + 1}`,
     },
   ];
 };

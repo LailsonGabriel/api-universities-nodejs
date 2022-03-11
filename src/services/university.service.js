@@ -21,7 +21,7 @@ const getAllUniversities = async (page, country) => {
       {
         previousPage: `http://localhost:8000/universities?page=${
           page === 1 ? 1 : page - 1
-        }?country=${country}`,
+        }&country=${country}`,
         nextPage: `http://localhost:8000/universities?page=${
           page + 1
         }&country=${country}`,

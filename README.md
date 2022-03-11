@@ -8,8 +8,8 @@
 # Comandos
 <ul>
   1<li><strong>npm install - </strong>vai instalar as dependências no projeto**IMPORTANTE!**</li>
-  2<li><strong>npm prestart - </strong> vai rodar o script para popular sua database e colletion</li>
-  3<li><strong>npm start:dev - </strong> vai iniciar sua API(Obs: é recomendado rodar primeramente o comando npm prestart)</li>
+  2<li><strong>npm run prestart - </strong> vai rodar o script para popular sua database e colletion</li>
+  3<li><strong>npm run start:dev - </strong> vai iniciar sua API(Obs: é recomendado rodar primeramente o comando npm prestart)</li>
 </ul>
 
 # Rotas

@@ -9,8 +9,10 @@ const {
   destroyUniversity,
 } = require('../services/university.service');
 
-const getUniversities = rescue(async (_req, res) => {
-  const universities = await getAllUniversities();
+const getUniversities = rescue(async (req, res) => {
+  const { country } = req.query;
+
+  const universities = await getAllUniversities(country);
   res.status(200).json(universities);
 });
 

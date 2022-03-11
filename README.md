@@ -1,8 +1,7 @@
 # Requesitos para rodar o projeto em sua máquina
 <ul>
   <li>Ter o Node instalado</li>
-  <li>Ter o MongoDB instalado</li>
-  <li>Ter o VsCode ou outro editor de código instalado</li>
+  <li>Ter o MongoDB local instalado</li>
 </ul>
 
 # Comandos

@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start:dev": "nodemon index.js",
-    "prestart": "node ./src/script/fillDB.js"
+    "prestart": "node ./src/script/fillDB.js",
+    "start:all": "npm install && npm run prestart && npm run start:dev"
   },
   "keywords": [],
   "author": "",
